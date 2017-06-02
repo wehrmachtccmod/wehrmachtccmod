@@ -1,0 +1,196 @@
+
+Zach's mod for CC
+
+Thanks to the Metal Slug guy for that awesome parachute and .lua
+Also Whitty.
+
+Whermacht: The primary military force for the Nazi Party, including the
+Heer (Army), the Kriegsmarine (Navy), and Luftwaffe (Airforce). The
+Wehrmacht used some of the best vehicles and planes in WWII, for example:
+
+THE KING TIGER! (Panzerkampfwagon VI - B)
+THE KETTENKKRAD (SdKfz II)
+
+The Waffen Schutzstaffel (Waffen SS) was not included as Adolf Hitler
+wanted it as a paramilitary force under the command of Henrich Himmler,
+the Nazi "Second in command" of sorts.
+
+
+Notes:
+0 = NOANIM
+1 = ALWAYSLOOP
+2 = ALWAYSRANDOM
+3 = ALWAYSPINGPONG 
+4 = LOOPWHENMOVING
+5 = LOOPWHENOPENCLOSE
+6 = PINGPONGOPENCLOSE
+
+///////////////////////////////////////////////////////////////////////////
+
+My Tut for CC, made for apprentice Will Sparrow, and whoever else wants it
+Any mistakes, I apologise. Never will be finidhed :(
+GET DOWN AND PRAY, WILL!
+
+Tabs are essential, and should be laid out in the following order:
+
+Subject				     = The object / actor created.
+	-Values			     = The he properties and values.
+		-Value Properties    = Add one tab for each new subject.
+					  Anything here will affect the 
+					  latest 'Value'. This new tab
+					  makes the latest value the
+					  subject.
+
+
+[Example]
+
+AddDevice = HDFirearm
+	SpriteFile = ContentFile
+		FilePath = Example.rte/Example.bmp
+
+[Note: This is not usually the order that values will appear.]
+Tabs need to be in the right order else the game will crash, and they
+keep your code nice and organised. You'll get used to tapping the 'TAB'
+key.
+
+
+//Comments
+//Double forward slash represents a comment. The game does not read
+//comments.
+
+
+/*
+Forward slash - aterisk excludes
+everything inside the slashes and asterisks, counting it as a comment. This
+is useful for preserving an unworking peice of code to fix later on if you
+are eager to play the game.
+Asterisk - forward slash ends comment.
+*/
+
+
+All values and subjects when typed should have no spaces, and each
+word should start with a capital letter (EXEPT NAMES!)
+For each value and property, a '=' and two spaces will be used inbetween
+the property and value.
+
+[Example]
+
+Example = Example
+	Something = Whatever
+	Something[Space][Equals][Space]Whatever
+
+///////////////////////////////////////////////////////////////////////////
+
+Names:
+There are three types of names in CC.
+They are:
+
+PresetName = A name recorded by the game to be used later on.
+This is the most used name in CC.
+
+InstanceName = A name that will not be recorded, and cannot called
+apon ater in the game.
+
+CopyOf = CopyOfs call upon preset names, and apply all the
+copied subject's values to the instance subject. CopyOfs will be followed
+by a preset or instance name.
+
+CopyOfs can then change the original's values by order of tabbing. You can
+add and change values, but not take them away. See, if you want the CopyOf
+to not have a value that the original has, you cannot change it, and the
+only way to get around this is to write the coding [again].
+
+[Example]
+
+AddEffect = MOPixel
+	CopyOf = Grenade Fragment Yellow
+	PresetName = Lolz I iS no GrAmmarz!
+
+[Example]
+
+AddEffect = MOPixel
+	CopyOf = Grenade Fragment Yellow
+	PresetName = Lolz DiE G/F yEllowZ!
+	Mass = 100000	//OMG 1337 h@x
+	LifeTime = 100
+	Sharpness = 3.5
+	//etc
+
+Say, for example, I want to attach shoulder plates and shin guards to an
+actor, one for each two arms an legs. They each have the same properties,
+exept for the SpriteFile. I only have to code one, and copy the others.
+
+[Example]
+
+AddEffect = Attachable
+	PresetName = Guard A
+	Mass = 10
+	Sharpness = 1
+	HitsMOs = 0
+	GetsHitByMOs = 1
+	SpriteFile = ContentFile
+		FilePath = [Whatever]
+	//etc
+
+AddEffect = Attachable
+	CopyOf = GuardA
+	PresetName = GuardB
+	SpriteFile = ContentFile
+		FilePath = [Whatever 2]
+
+AddEffect = Attachable
+	CopyOf = GuardA
+	PresetName = GuardC
+	SpriteFile = ContentFile
+		FilePath = [Whatever 3]
+
+AddEffect = Attachable
+	CopyOf = GuardA
+	PresetName = GuardD
+	SpriteFile = ContentFile
+		FilePath = [Whatever 4]
+
+///////////////////////////////////////////////////////////////////////////
+
+Sprites: Are pictures attached to subjects using the code:
+
+SpriteFile = ContentFile
+	FilePath = Whatever.rte/Stuff.bmp	//Notice the tabbing, the
+						sprie becomes the subject
+						and has it's own column.
+
+///////////////////////////////////////////////////////////////////////////
+
+Moving on:
+
+To create a subject, we use the word 'Add' in the first tabbing column.
+
+[Example]
+
+AddActor = AHuman
+AddDevice = HDFirearm
+AddEffect = MOPixel
+
+We can also use 'Add' to add subjects to other subjects, example, a chest
+plate to a heavy soldier
+
+[Example]
+
+AddActor = AHuman		//We call the subject the 'Parent'
+	"
+	"
+	AddAttachable = Attachable	//And the attached items the
+		CopyOf = Soldier Heavy Chest Plate A  //'Children' objects
+
+The 'Add' line will usually be followed by the name, and other values
+depending on the subject.
+
+///////////////////////////////////////////////////////////////////////////
+
+MOs
+
+There are three types of MOs
+
+MOPixels = one-pixel pixels that have no sprites.
+MOSParticles = All I know is that these have sprites, can have emitters
+[later], entry and exit wounds, and
